@@ -11,7 +11,7 @@ public class LongestSubstringWithoutRepetition {
         int strpoint =0;
         List subStr = new ArrayList();
         int counter =0;
-        for(int i=counter;i<charArr.length;i++){
+        for(int i=0;i<charArr.length;i++){
 
                     if(subStr.contains(charArr[i])){
                         treeMap.put(subStr.size(),subStr.toString());
