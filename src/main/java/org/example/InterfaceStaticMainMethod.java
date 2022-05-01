@@ -11,7 +11,7 @@ public interface InterfaceStaticMainMethod {
         System.out.println("MyhelloInterface");
         Map displayMap = new HashMap();
         List doneElements = new ArrayList<>();
-        int [] Arry = {1,2,3,3,4,4,5,3};
+        int [] Arry = {1,2,3,3,4,4,5,1};
         int count =0;
         int position =0;
         for (int i=0;i<Arry.length;i++){
