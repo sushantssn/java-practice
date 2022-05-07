@@ -2,12 +2,8 @@ package org.example.practice.streams.dto;
 
 import lombok.*;
 
+@Data
 @NoArgsConstructor
-@AllArgsConstructor
-@Setter
-@Getter
-@Builder
-@ToString
 public class Address {
     private String zipcode;
 }
