@@ -19,7 +19,7 @@ Basics of Exceptions Handling
 Exception Handling in API
 https://www.toptal.com/java/spring-boot-rest-api-error-handling
 
-OOPs
+OOPs --Inheritance,String,Garbage collectionc,class loaders,java Memmory area.
 
 Spring
 https://www.youtube.com/playlist?list=PLC97BDEFDCDD169D7
