@@ -4,12 +4,8 @@ import lombok.*;
 
 import java.util.List;
 
+@Data
 @NoArgsConstructor
-@AllArgsConstructor
-@Setter
-@Getter
-@Builder
-@ToString
 public class TempStudent {
     public String name;
     public int age;
