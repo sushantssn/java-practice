@@ -4,10 +4,10 @@ import lombok.*;
 
 
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 @Data
 class Customer {
 
@@ -186,6 +186,25 @@ public class StreamAPIPractice2 {
         List<Order> productOrderedByTire2 = orderInventory.stream().filter(order -> order.getCustomer().getTier() == 2 && order.getOrderDate().isBefore(LocalDate.of(2022,04,20)) && order.getOrderDate().isAfter(LocalDate.of(2022,04,01))).collect(Collectors.toList());
         List<Set<Product>> productset =  productOrderedByTire2.stream().map(order -> order.getProducts()).collect(Collectors.toList());
         System.out.println(productset);
+
+        //Get the cheapest products of “Books” category
+        Optional<Product> cheapestProduct =  productInventory.stream().min(Comparator.comparing(Product::getPrice));
+        System.out.println(cheapestProduct);
+
+        //Get the 3 most recent placed order
+        Set<Order> recentmostOrders = orderInventory.stream().sorted(Comparator.comparing(Order::getOrderDate).reversed()).limit(3).collect(Collectors.toSet());
+        System.out.println("Last 3 orders : "+recentmostOrders);
+
+        //Get a list of orders which were ordered on 15-Mar-2021, log the order records to the console and then return its product list
+        List<Set<Product>> orderon15May = orderInventory.stream().filter(order -> order.getOrderDate().equals(LocalDate.of(2022,05,15))).peek(System.out::println).map(order -> order.getProducts()).collect(Collectors.toList());
+        System.out.println(orderon15May);
+
+        //Calculate total lump sum of all orders placed in Feb 2021
+        Double orderInMay = orderInventory.stream().filter(order -> order.getOrderDate().getMonthValue() == 05).collect(Collectors.toList())
+                .stream().map(order -> order.getProducts()).collect(Collectors.toList())
+                .stream().map(products -> products.stream().map(product -> product.getPrice()).mapToDouble(Double::doubleValue).sum())
+                .mapToDouble(Double::doubleValue).sum();
+        System.out.println(orderInMay);
 
     }
 
