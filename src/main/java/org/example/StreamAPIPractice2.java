@@ -199,12 +199,35 @@ public class StreamAPIPractice2 {
         List<Set<Product>> orderon15May = orderInventory.stream().filter(order -> order.getOrderDate().equals(LocalDate.of(2022,05,15))).peek(System.out::println).map(order -> order.getProducts()).collect(Collectors.toList());
         System.out.println(orderon15May);
 
-        //Calculate total lump sum of all orders placed in Feb 2021
+        //Calculate total lump sum of all orders placed in May 2022
         Double orderInMay = orderInventory.stream().filter(order -> order.getOrderDate().getMonthValue() == 05).collect(Collectors.toList())
                 .stream().map(order -> order.getProducts()).collect(Collectors.toList())
                 .stream().map(products -> products.stream().map(product -> product.getPrice()).mapToDouble(Double::doubleValue).sum())
                 .mapToDouble(Double::doubleValue).sum();
         System.out.println(orderInMay);
+
+        //Calculate order average payment placed on 14-Mar-2021
+        OptionalDouble avgOrderInMay = orderInventory.stream().filter(order -> order.getOrderDate().equals(LocalDate.of(2022,05,15))).collect(Collectors.toList())
+                .stream().map(order -> order.getProducts()).collect(Collectors.toList())
+                .stream().map(products -> products.stream().map(product -> product.getPrice()).mapToDouble(Double::doubleValue).average())
+                .mapToDouble(OptionalDouble->OptionalDouble.getAsDouble()).average();
+        System.out.println(avgOrderInMay);
+
+///Obtain a collection of statistic figures (i.e. sum, average, max, min, count) for all products of category “Books”
+        DoubleSummaryStatistics statistics = productInventory
+                .stream()
+                        .filter(product -> product.getCategory().equals("Books"))
+                                .mapToDouble(product->product.getPrice())
+                                        .summaryStatistics();
+
+        System.out.println(String.format("count = %1$d, average = %2$f, max = %3$f, min = %4$f, sum = %5$f",
+                statistics.getCount(), statistics.getAverage(), statistics.getMax(), statistics.getMin(), statistics.getSum()));
+
+        //Obtain a data map with order id and order’s product count
+        Map<Long,Integer> orderMap = orderInventory.stream().collect(Collectors.toMap(order -> order.getId().longValue(),order -> order.getProducts().size()));
+        System.out.println(orderMap);
+
+
 
     }
 
