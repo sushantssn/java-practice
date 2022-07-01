@@ -54,4 +54,5 @@ Docker/Kubernetis
 Best Practices Coding
 https://www.youtube.com/watch?v=wY_CUkU1zfw
 
-
+Sample schema
+https://github.com/morenoh149/postgresDBSamples
