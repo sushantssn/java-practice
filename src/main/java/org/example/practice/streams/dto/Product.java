@@ -1,6 +1,11 @@
 package org.example.practice.streams.dto;
 
-import lombok.*;
+
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.util.Set;
 
@@ -12,7 +17,7 @@ public class Product {
 
     private String name;
     private String category;
-    @With private Double price;
+   private Double price;
 
 
     @ToString.Exclude
